@@ -1,0 +1,40 @@
+<div class="vault-box" (click)="closeMenu($event)">
+  <h3>Password Vault <span class="glyphicon glyphicon-th pull-right"></span></h3>
+  <hr>
+  <div #scrollingView class="passwords-table-container">
+    <table>
+      <thead>
+      <tr class="header-row">
+        <th>Website</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th><p class="add-password" [ngClass]="{'fade-out': isAdding}" (click)="beginAddingPassword()">+</p></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let password of passwords; let i = index;" [ngClass]="{'fade-out': password?.isDeleted}">
+        <td>
+          <a [href]="password.url | safe:'url'" target="_blank" rel="nofollow">{{password.title}}</a>
+        </td>
+        <td>{{password.username}}</td>
+        <td>•••••••</td>
+        <td (click)="toggleMenu($event)">
+          <span class="glyphicon glyphicon-option-vertical pull-right"></span>
+          <div class="menu">
+            <ul>
+              <li (click)="editPassword(i)">Edit</li>
+              <li (click)="removePassword(i)">Remove</li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      <tr class="adding-row" *ngIf="isAdding">
+        <td><input #urlField type="text" placeholder="Website"></td>
+        <td><input #usernameField type="text" placeholder="Username"></td>
+        <td><input #passwordField type="password" placeholder="Password"></td>
+        <td><button (click)="addPassword(urlField, usernameField, passwordField)">Save</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

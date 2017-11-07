@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+  font-weight: 200!important;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+button:focus {
+  outline: none;
+}
+
+.top-space {
+  margin-top: 10vh;
+}
+
+
+.login-box, input, button {
+  border-radius: 3px;
+}
+
+body {
+  background: url('assets/images/bg.jpg');
+  overflow: hidden;
+}
+
+a {
+  color: #da2839!important;
+}
+
+input {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #888;
+}
+
+button {
+  padding: 6px;
+  width: 100%;
+  background-color: #da3829;
+  border: 1px solid #bc3023;
+  color: white;
+}

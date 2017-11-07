@@ -1,3 +1,9 @@
-<p>
-  login works!
-</p>
+<div class="login-box" [ngClass]="{'wrong': loginFailed}">
+  <h3>Password Vault <span class="glyphicon glyphicon-th pull-right"></span></h3>
+  <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <input id="email" type="email" name="email" placeholder="Email" ngModel required>
+    <input id="password" type="password" name="password" placeholder="Password" ngModel required>
+    <button type="submit">Login</button>
+  </form>
+  <p>Don't have an account? <a href="#">Sign up</a></p>
+</div>

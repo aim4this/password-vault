@@ -1,0 +1,52 @@
+.login-box {
+  display: block;
+  margin: 20vh auto 0 auto;
+  width: 100%;
+  max-width: 350px;
+  padding: 20px 30px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+h3 {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.glyphicon {
+  margin-right: 3px;
+  color: #da3829;
+}
+
+p {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 12px;
+  text-align: center;
+}
+p a {
+  color: #da3829;
+}
+
+
+.wrong {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

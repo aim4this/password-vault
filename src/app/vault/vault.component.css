@@ -1,0 +1,163 @@
+.vault-box {
+  height: 80vh;
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 20px 30px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  position: relative;
+}
+
+.vault-box:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
+  height: 30px;
+  border-bottom: 20px solid #f5f5f5;
+  pointer-events: none;
+}
+
+.passwords-table-container {
+  overflow-y: auto;
+  height: calc(100% - 47px);
+  margin: 0 -30px;
+  padding: 0 30px 30px 30px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td, th {
+  padding: 12px 8px!important;
+}
+
+td:not(:nth-child(4)) {
+  overflow: hidden;
+}
+
+h3 {
+  margin: 0 0 15px 0;
+  padding: 0;
+}
+
+.glyphicon-th {
+  margin-right: 3px;
+  color: #da3829;
+}
+
+tr:not(.header-row):not(.adding-row):hover {
+  background-color: #efefef;
+}
+
+
+tr .glyphicon-option-vertical {
+  color: #ccc;
+  pointer-events: none;
+}
+
+tr:hover .glyphicon-option-vertical {
+  color: #666;
+}
+
+
+hr {
+  border-top: 1px solid #ccc;
+}
+
+th {
+  font-weight: 400!important;
+  border: none!important;
+}
+
+tr:nth-child(1) td {
+  border-top: none;
+}
+
+tr td:nth-child(4) {
+  position: relative;
+  cursor: pointer;
+  max-width: 15px;
+}
+
+tr th:nth-child(4) {
+  cursor: pointer;
+  width: 42px;
+}
+
+.menu-open .menu {
+  display: block;
+}
+
+
+.menu {
+  z-index: 10;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: #f5f5f5;
+  color: black;
+}
+
+
+.menu ul {
+  padding: 7px 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu ul li:hover {
+  background-color: #efefef;
+}
+
+.menu ul li {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 400!important;
+}
+
+.fade-out {
+  transition: opacity 0.45s;
+  opacity: 0;
+}
+
+.add-password {
+  margin: 0 -3px 0 0;
+  padding: 0 3px 3px 3.5px;
+  line-height: 17px;
+  float: right;
+  font-weight: 400!important;
+  font-size: 22px;
+  color: #da2839;
+  border-radius: 50%;
+  border: 1px solid #da2839;
+}
+
+input {
+  margin: 0;
+}
+
+
+.adding-row button {
+  background: transparent;
+  border: none;
+  color: #da3829;
+}
+
+.adding-row td:nth-child(4) {
+  max-width: 49px;
+}
+
+.adding-row td {
+  padding: 12px 6px!important;
+}
