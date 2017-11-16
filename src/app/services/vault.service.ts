@@ -32,8 +32,33 @@ export class VaultService {
       );
   }
 
+  updatePassword(passwordId, url, username, password) {
+    const params = {
+      url: url,
+      username: username,
+      encrypted_password: password
+    };
+    return this.http.patch(this.loginService.API_URL + 'users/' + this.loginService.userId + '/passwords/' + passwordId, params, this.loginService.authOptions)
+      .map(
+        res => {
+          this.loginService.setHeaders(res.headers);
+          return res;
+        }
+      );
+  }
+
   deletePassword(passwordId) {
     return this.http.delete(this.loginService.API_URL + 'users/' + this.loginService.userId + '/passwords/' + passwordId, this.loginService.authOptions)
+      .map(
+        res => {
+          this.loginService.setHeaders(res.headers);
+          return res;
+        }
+      );
+  }
+
+  getPassword(passwordId) {
+    return this.http.get(this.loginService.API_URL + 'users/' + this.loginService.userId + '/passwords/' + passwordId, this.loginService.authOptions)
       .map(
         res => {
           this.loginService.setHeaders(res.headers);

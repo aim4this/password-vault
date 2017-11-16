@@ -11,6 +11,8 @@ import { VaultComponent } from './vault/vault.component';
 import {VaultService} from './services/vault.service';
 import { SafePipe } from './pipes/safe.pipe';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
+import { ClipboardModule } from 'ngx-clipboard';
+import { CopyToClipboardDirective } from './copy-to-clipboard.directive';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
     LoginComponent,
     VaultComponent,
     LoadingSpinnerComponent,
-    SafePipe
+    SafePipe,
+    CopyToClipboardDirective
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    Routing
+    Routing,
+    ClipboardModule
   ],
   providers: [
     LoginService,

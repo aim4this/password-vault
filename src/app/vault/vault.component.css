@@ -160,7 +160,56 @@ input {
 }
 
 .adding-row td {
-  padding: 12px 6px!important;
+  padding: 5px 6px!important;
+}
+
+.password-text {
+  position: relative;
+  overflow: hidden;
+  max-width: 190px;
+  display: inline-block;
+}
+
+tr:hover .password-text {
+  max-width: 144px;
+}
+
+.password-text:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 170px;
+  width: 20px;
+  background: linear-gradient(to right, rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
+  height: 100%;
+}
+
+tr:hover .password-text:after {
+  content: '';
+  left: 124px;
+  background: linear-gradient(to right, rgba(239, 239, 239, 0), rgba(239, 239, 239, 1));
+}
+
+.glyphicon-eye-open, .glyphicon-eye-close, .copy {
+  display: none;
+  float: right;
+  transform: translateY(3px);
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.copy {
+  margin-right: 11px;
+  transform: translateY(2px);
+}
+
+
+tr:hover .glyphicon-eye-open, tr:hover .glyphicon-eye-close, tr:hover .copy {
+  display: block;
+}
+
+.glyphicon-eye-open:hover, .glyphicon-eye-close:hover, .copy:hover {
+  opacity: 1;
 }
 
 

@@ -12,13 +12,18 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let password of passwords; let i = index;" [ngClass]="{'fade-out': password?.isDeleted}">
-        <td>
-          <a [href]="password.url | safe:'url'" target="_blank" rel="nofollow">{{password.title}}</a>
+      <tr *ngFor="let password of passwords; let i = index;" [ngClass]="{'fade-out': password?.isDeleted, 'adding-row': (password === passwordBeingEdited)}">
+        <td *ngIf="password !== passwordBeingEdited"><a [href]="password.url | safe:'url'" target="_blank" rel="nofollow">{{password.title}}</a></td>
+        <td *ngIf="password !== passwordBeingEdited">{{password.username}}</td>
+        <td *ngIf="password !== passwordBeingEdited">
+          <span #passwordDisplay class="password-text">{{(password.showPassword) ? password.decrypted_password : '•••••••'}}</span>
+          <span class="glyphicon"
+                [ngClass]="{'glyphicon-eye-open': !password.showPassword, 'glyphicon-eye-close': password.showPassword}"
+                (click)="toggleShowPassword(password)">
+          </span>
+          <span class="copy glyphicon glyphicon-copy" appClipboard [cbContent]="password.decrypted_password" [password]="password" (cbOnSuccess)="copySuccess($event, password.id)"></span>
         </td>
-        <td>{{password.username}}</td>
-        <td>•••••••</td>
-        <td (click)="toggleMenu($event)">
+        <td *ngIf="password !== passwordBeingEdited" (click)="toggleMenu($event)">
           <span class="glyphicon glyphicon-option-vertical pull-right"></span>
           <div class="menu">
             <ul>
@@ -27,6 +32,10 @@
             </ul>
           </div>
         </td>
+        <td *ngIf="password === passwordBeingEdited"><input [(ngModel)]="passwordBeingEdited.url" type="text" placeholder="Website"></td>
+        <td *ngIf="password === passwordBeingEdited"><input [(ngModel)]="passwordBeingEdited.username" type="text" placeholder="Username"></td>
+        <td *ngIf="password === passwordBeingEdited"><input [(ngModel)]="passwordBeingEdited.decrypted_password" type="text" placeholder="Password"></td>
+        <td *ngIf="password === passwordBeingEdited"><button (click)="updatePassword(urlField, usernameField, passwordField)">Save</button></td>
       </tr>
       <tr class="adding-row" *ngIf="isAdding">
         <td><input #urlField type="text" placeholder="Website"></td>
