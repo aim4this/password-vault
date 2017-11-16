@@ -48,7 +48,6 @@ export class CopyToClipboardDirective implements OnInit, OnDestroy {
     if (!this.clipboardSrv.isSupported) {
       this.handleResult(false, undefined);
     } else if (content) {
-      debugger;
       this.handleResult(this.clipboardSrv.copyFromContent(content, this.renderer), content);
     }
   }
