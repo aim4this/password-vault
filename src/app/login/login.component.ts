@@ -12,21 +12,32 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   loginFailed = false;
+  fadeIn = true;
+  loggingIn = false;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.fadeIn = false;
+    }, 1500);
   }
 
   onSubmit(loginForm) {
+    this.loggingIn = true;
+    setTimeout(() => {
+      this.attemptLogin(loginForm);
+    }, 400);
+  }
+
+  attemptLogin(loginForm) {
     const data = loginForm.value;
     this.loginService.login(data.email, data.password).subscribe(
       res => {
-        console.log(res.json());
         this.loginSuccess();
       },
       err => {
-        console.log(err.json());
+        this.loggingIn = false;
         this.loginFailure();
       }
     );

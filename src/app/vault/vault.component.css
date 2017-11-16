@@ -8,6 +8,7 @@
   border: 1px solid #ccc;
   overflow: hidden;
   position: relative;
+  animation: get-big 0.45s;
 }
 
 .vault-box:after {
@@ -160,4 +161,14 @@ input {
 
 .adding-row td {
   padding: 12px 6px!important;
+}
+
+
+@keyframes get-big {
+  0% {
+    transform: translateY(-35px) scale(0.4871, 0.391);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
 }

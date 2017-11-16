@@ -8,6 +8,31 @@
   border: 1px solid #ccc;
 }
 
+.fade-up {
+  animation: fade-up 1.3s;
+}
+
+.loading-spinner {
+  pointer-events: none;
+  position: absolute;
+  top: 230px;
+  width: 288px;
+}
+
+.login-box:not(.logging-in) .loading-spinner {
+  opacity: 0;
+}
+
+.logging-in .loading-spinner {
+  transition: 0.15s;
+  opacity: 1;
+}
+
+.logging-in *:not(.loading-spinner) {
+  transition: 0.15s;
+  opacity: 0;
+}
+
 h3 {
   margin: 0 0 15px 0;
   padding: 0;
@@ -48,5 +73,16 @@ p a {
 
   40%, 60% {
     transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes fade-up {
+  0%, 20% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

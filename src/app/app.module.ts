@@ -10,12 +10,14 @@ import {HttpModule} from '@angular/http';
 import { VaultComponent } from './vault/vault.component';
 import {VaultService} from './services/vault.service';
 import { SafePipe } from './pipes/safe.pipe';
+import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     VaultComponent,
+    LoadingSpinnerComponent,
     SafePipe
   ],
   imports: [
