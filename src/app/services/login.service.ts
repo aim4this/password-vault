@@ -23,7 +23,11 @@ export class LoginService {
       'email': email,
       'password': password
     };
-    return this.http.post(this.API_URL + 'auth', params);
+    return this.http.post(this.API_URL + 'auth', params).map(
+      res => {
+        return res.json().statusCode;
+      }
+    );
   }
 
   login(email: string, password: string) {
@@ -35,7 +39,10 @@ export class LoginService {
       res => {
         this.setHeaders(res.headers);
         this.userId = res.json().data.id;
-        return res;
+        return true;
+      },
+      err => {
+        return false;
       }
     );
   }

@@ -30,8 +30,8 @@ export class CopyToClipboardDirective implements OnInit, OnDestroy {
   @HostListener('click', ['$event.target']) public onClick() {
     if (!this.cbContent) {
       this.vault.getPassword(this.password.id).subscribe(
-        res => {
-          this.password.decrypted_password = res.json().decrypted_password;
+        json => {
+          this.password.decrypted_password = json.decrypted_password;
           setTimeout(() => {
             console.log(this.password.decrypted_password);
             console.log(this.cbContent);

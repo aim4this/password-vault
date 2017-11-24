@@ -12,7 +12,7 @@ export class VaultService {
       .map(
         res => {
           this.loginService.setHeaders(res.headers);
-          return res;
+          return res.json();
         }
       );
   }
@@ -27,7 +27,7 @@ export class VaultService {
       .map(
         res => {
           this.loginService.setHeaders(res.headers);
-          return res;
+          return res.json();
         }
       );
   }
@@ -42,7 +42,7 @@ export class VaultService {
       .map(
         res => {
           this.loginService.setHeaders(res.headers);
-          return res;
+          return res.json();
         }
       );
   }
@@ -52,7 +52,7 @@ export class VaultService {
       .map(
         res => {
           this.loginService.setHeaders(res.headers);
-          return res;
+          return res.json();
         }
       );
   }
@@ -62,7 +62,7 @@ export class VaultService {
       .map(
         res => {
           this.loginService.setHeaders(res.headers);
-          return res;
+          return res.json();
         }
       );
   }

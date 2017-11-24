@@ -8,10 +8,12 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from '../app.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterTestingModule} from '@angular/router/testing';
+import {MockLoginService} from '../services/mock-login.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let mockLoginService = new MockLoginService();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,10 +29,18 @@ describe('LoginComponent', () => {
         RouterTestingModule
       ],
       providers: [
-        LoginService
+        { provide: LoginService, useValue: mockLoginService}
       ]
     }).compileComponents();
+    TestBed.overrideComponent(LoginComponent, {
+      set: {
+        providers: [
+          { provide: LoginService, useValue: mockLoginService}
+        ]
+      }
+    });
   }));
+
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -42,21 +52,12 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
-  it('should begin logging in when login or enter is pressed', () => {
-    // Action
-    component.attemptLogin('', '');
-
-    // Assert
-    expect(component.loggingIn).toBe(true);
-  });
-
   it('should login successfully when passed correct email and password', () => {
     component.attemptLogin('test@test.com', '12345678')
       .subscribe(
         res => {
           // pass
-          expect(res).toBe(false);
+          expect(res).toBeTruthy();
         },
         err => {
           // fail
@@ -65,6 +66,31 @@ describe('LoginComponent', () => {
       );
   });
 
+  it('should fail login when passed incorrect email', () => {
+    component.attemptLogin('wrong@email.com', '12345678')
+      .subscribe(
+        res => {
+          // fail
+          expect(false).toBe(true);
+        },
+        err => {
+          // pass
+          expect(err).toBeFalsy();
+        }
+      );
+  });
 
-
+  it('should fail login when passed incorrect password', () => {
+    component.attemptLogin('test@test.com', 'wrongPassword')
+      .subscribe(
+        res => {
+          // fail
+          expect(false).toBe(true);
+        },
+        err => {
+          // pass
+          expect(err).toBeFalsy();
+        }
+      );
+  });
 });

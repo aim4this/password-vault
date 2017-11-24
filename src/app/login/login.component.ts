@@ -30,15 +30,19 @@ export class LoginComponent implements OnInit {
 
   attemptLogin(email, password) {
     this.loggingIn = true;
-    return this.loginService.login(email, password).map(
+    const obs = this.loginService.login(email, password);
+    obs.subscribe(
       res => {
         this.loginSuccess();
+        return res;
       },
       err => {
         this.loggingIn = false;
         this.loginFailure();
+        return err;
       }
     );
+    return obs;
   }
 
   loginSuccess() {

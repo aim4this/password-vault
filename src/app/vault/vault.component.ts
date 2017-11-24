@@ -19,8 +19,8 @@ export class VaultComponent implements OnInit {
   ngOnInit() {
     this.vault.getPasswords()
       .subscribe(
-        res => {
-          this.passwords = res.json();
+        json => {
+          this.passwords = json;
         },
         err => {
           this.router.navigate(['/']);
@@ -48,35 +48,39 @@ export class VaultComponent implements OnInit {
   }
 
   addPassword(urlField, usernameField, passwordField) {
-    this.vault.createPassword(urlField.value, usernameField.value, passwordField.value)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.passwords.push(res.json().new_password);
+    const obs = this.vault.createPassword(urlField.value, usernameField.value, passwordField.value);
+    obs.subscribe(
+        json => {
+          this.passwords.push(json.new_password);
           this.isAdding = false;
+          return json;
         },
         err => {
           console.log(err);
+          return err;
         }
       );
+    return obs;
   }
 
   updatePassword() {
-    this.vault.updatePassword(
+    const obs = this.vault.updatePassword(
       this.passwordBeingEdited.id,
       this.passwordBeingEdited.url,
       this.passwordBeingEdited.username,
       this.passwordBeingEdited.decrypted_password
-    ).subscribe(
-      res => {
-        console.log(res);
-        this.passwordBeingEdited.title = res.json().title;
+    );
+
+    obs.subscribe(
+      json => {
+        this.passwordBeingEdited.title = json.title;
         this.passwordBeingEdited = undefined;
       },
       err => {
         console.log(err);
       }
     );
+    return obs;
   }
 
   copySuccess(e, id) {
@@ -90,8 +94,8 @@ export class VaultComponent implements OnInit {
       } else {
         this.vault.getPassword(password.id)
           .subscribe(
-            res => {
-              password.decrypted_password = res.json().decrypted_password;
+            json => {
+              password.decrypted_password = json.decrypted_password;
               password.showPassword = true;
             }
           );
@@ -106,9 +110,8 @@ export class VaultComponent implements OnInit {
     this.isAdding = false;
     this.vault.getPassword(this.passwordBeingEdited.id)
       .subscribe(
-        res => {
-          console.log(res.json());
-          this.passwordBeingEdited.decrypted_password = res.json().decrypted_password;
+        json => {
+          this.passwordBeingEdited.decrypted_password = json.decrypted_password;
         },
         err => {
           console.log(err.json());
@@ -119,10 +122,9 @@ export class VaultComponent implements OnInit {
 
   removePassword(i) {
     const password = this.passwords[i];
-    this.vault.deletePassword(password.id)
-      .subscribe(
-        res => {
-          console.log(res);
+    const obs = this.vault.deletePassword(password.id);
+    obs.subscribe(
+        json => {
           this.deleteSuccess(password, i);
         },
         err => {
@@ -130,6 +132,7 @@ export class VaultComponent implements OnInit {
         }
       );
     this.closeMenu();
+    return obs;
   }
 
   deleteSuccess(password, i) {
@@ -145,5 +148,4 @@ export class VaultComponent implements OnInit {
       this.renderer.removeClass(menues[i], 'menu-open');
     }
   }
-
 }
