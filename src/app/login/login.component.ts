@@ -24,15 +24,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginForm) {
-    this.loggingIn = true;
-    setTimeout(() => {
-      this.attemptLogin(loginForm);
-    }, 400);
+    const data = loginForm.value;
+    this.attemptLogin(data.email, data.password);
   }
 
-  attemptLogin(loginForm) {
-    const data = loginForm.value;
-    this.loginService.login(data.email, data.password).subscribe(
+  attemptLogin(email, password) {
+    this.loggingIn = true;
+    return this.loginService.login(email, password).map(
       res => {
         this.loginSuccess();
       },
