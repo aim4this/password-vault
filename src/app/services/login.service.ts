@@ -18,14 +18,16 @@ export class LoginService {
 
   constructor(private http: Http) {}
 
-  createUser(email: string, password: string) {
+  createUser(email: string, phone: string, password: string, password_confirmation: string) {
     const params = {
-      'email': email,
-      'password': password
+      email: email,
+      phone: phone,
+      password: password,
+      password_confirmation: password_confirmation
     };
     return this.http.post(this.API_URL + 'auth', params).map(
       res => {
-        return res.json().statusCode;
+        return res.json();
       }
     );
   }

@@ -1,0 +1,12 @@
+<div class="login-box" [ngClass]="{'logging-in': loggingIn}">
+  <h3>Password Vault <span class="glyphicon glyphicon-th pull-right"></span></h3>
+  <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+    <input id="email" type="email" name="email" placeholder="Email" ngModel required>
+    <input id="phone" type="number" name="phone" placeholder="Phone" ngModel required>
+    <input id="password" type="password" name="password" placeholder="Password" ngModel required>
+    <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Password confirmation" ngModel required>
+    <button type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a [routerLink]="['']">Login</a></p>
+  <app-loading-spinner class="loading-spinner"></app-loading-spinner>
+</div>

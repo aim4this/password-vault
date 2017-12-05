@@ -5,6 +5,6 @@
     <input id="password" type="password" name="password" placeholder="Password" ngModel required>
     <button type="submit">Login</button>
   </form>
-  <p>Don't have an account? <a href="#">Sign up</a></p>
+  <p>Don't have an account? <a [routerLink]="['sign-up']">Sign up</a></p>
   <app-loading-spinner class="loading-spinner"></app-loading-spinner>
 </div>

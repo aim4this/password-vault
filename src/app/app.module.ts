@@ -13,6 +13,7 @@ import { SafePipe } from './pipes/safe.pipe';
 import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.component';
 import { ClipboardModule } from 'ngx-clipboard';
 import { CopyToClipboardDirective } from './copy-to-clipboard.directive';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CopyToClipboardDirective } from './copy-to-clipboard.directive';
     VaultComponent,
     LoadingSpinnerComponent,
     SafePipe,
-    CopyToClipboardDirective
+    CopyToClipboardDirective,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
