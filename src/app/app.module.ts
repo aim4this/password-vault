@@ -14,6 +14,7 @@ import {LoadingSpinnerComponent} from './loading-spinner/loading-spinner.compone
 import { ClipboardModule } from 'ngx-clipboard';
 import { CopyToClipboardDirective } from './copy-to-clipboard.directive';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import {ClipboardService} from 'ngx-clipboard/dist';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   ],
   providers: [
     LoginService,
-    VaultService
+    VaultService,
+    ClipboardService
   ],
   bootstrap: [AppComponent]
 })

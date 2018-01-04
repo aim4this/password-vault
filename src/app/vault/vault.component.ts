@@ -1,11 +1,13 @@
 import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {VaultService} from '../services/vault.service';
 import {Router} from '@angular/router';
+import {ClipboardService} from 'ngx-clipboard/dist';
 
 @Component({
   selector: 'app-vault',
   templateUrl: './vault.component.html',
-  styleUrls: ['./vault.component.css']
+  styleUrls: ['./vault.component.css'],
+  providers: [ ClipboardService ]
 })
 export class VaultComponent implements OnInit {
 

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class LoginService {
 
-  API_URL = 'http://localhost:3000/';
+  API_URL = environment.apiURL;
   authOptions = new RequestOptions({
     headers: new Headers(
       {
